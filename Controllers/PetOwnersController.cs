@@ -58,9 +58,9 @@ namespace pet_hotel.Controllers
             // Remove  
             _context.PetOwner.Remove(petOwner);
             // Save changes
-            _context.SaveChanges();     
-
-            return Ok();
+            _context.SaveChanges();    
+            // Send an Ok status
+            return OK(); 
          }
     }
 }
