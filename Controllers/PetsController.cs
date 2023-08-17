@@ -26,14 +26,7 @@ namespace pet_hotel.Controllers
         //     return new List<Pet>();
         // }
 
-        // Get for Pets by Owner
-          [HttpGet]
-          public IEnumerable<Pet> GetPets(){
-              return _context.Pet
-            // Join tables with PetOwner
-              .Include(pet => pet.petOwner);
-          }
-       
+        
         // [HttpGet]
         // [Route("test")]
         // public IEnumerable<Pet> GetPets() {
@@ -57,5 +50,22 @@ namespace pet_hotel.Controllers
 
         //     return new List<Pet>{ newPet1, newPet2};
         // }
+
+        // Get for Pets by Owner
+          [HttpGet]
+          public IEnumerable<Pet> GetPets(){
+              return _context.Pet
+            // Join tables with PetOwner
+              .Include(pet => pet.petOwner);
+          }
+
+        // POST
+        [HttpPost]
+        public IActionResult CreatePets (Pet pet){
+            _context.Add(pet); // INSERT into pets table
+            _context.SaveChanges(); //Save changes 
+            return CreatedAtAction(nameof(CreatePets), new {id = pet.Id}, pet);
+        }
+       
     }
 }
