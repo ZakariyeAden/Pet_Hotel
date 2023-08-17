@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace pet_hotel.Migrations
@@ -8,12 +9,29 @@ namespace pet_hotel.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "PetOwner",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    EmailAddress = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PetOwner", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Pet",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
+                    Breed = table.Column<string>(type: "text", nullable: true),
+                    Color = table.Column<string>(type: "text", nullable: true),
+                    CheckedInAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     OwnerId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -37,6 +55,9 @@ namespace pet_hotel.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Pet");
+
+            migrationBuilder.DropTable(
+                name: "PetOwner");
         }
     }
 }
