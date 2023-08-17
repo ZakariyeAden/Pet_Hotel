@@ -28,5 +28,24 @@ namespace pet_hotel.Controllers
          public IEnumerable<PetOwner> GetPetOwners(){
              return _context.PetOwner;
          }
+
+        // POST
+        [HttpPost]
+         public IActionResult CreatePetOwner(PetOwner petOwner){
+             _context.Add(petOwner); // INSERT into Petowner
+             _context.SaveChanges(); //Save changes
+
+            return CreatedAtAction(nameof(CreatePetOwner), new {id = petOwner.Id}, petOwner);
+         }
+        // DELETE 
+        [HttpDelete("id")]
+         public IActionResult DeletePetOwner(int id){
+            // find the Id to delete:
+            PetOwner petOwner = _context.PetOwner.find(id);
+            // Remove  
+            _context.PetOwner.remove(petOwner);
+            // Save changes
+            _context.SaveChanges();     
+         }
     }
 }
