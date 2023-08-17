@@ -32,9 +32,9 @@ namespace pet_hotel
         public int Id {get; set;}
         [Required]
         public string Name { get; set; }
-        // public string breed?
-        // public string color?
-        // public DateTime CheckedInAt { get; set;} null?
+        public string Breed { get; set; }
+        public string Color { get; set; }
+        public DateTime CheckedInAt { get; set;} 
         [ForeignKey("petOwner")]
         public int OwnerId {get; set;}
         public PetOwner petOwner {get; set; }
