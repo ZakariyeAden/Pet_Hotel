@@ -59,6 +59,19 @@ namespace pet_hotel.Controllers
               .Include(pet => pet.petOwner);
           }
 
+            // GET for PetOwners by specific ID
+         [HttpGet("{id}")]
+         public IActionResult GetPetById(int id)
+         {
+            var pet = _context.Pet.Find(id);
+            if(pet == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(pet);
+         }
+
         // POST
         [HttpPost]
         public IActionResult CreatePets (Pet pet){
@@ -66,6 +79,7 @@ namespace pet_hotel.Controllers
             _context.SaveChanges(); //Save changes 
             return CreatedAtAction(nameof(CreatePets), new {id = pet.Id}, pet);
         }
+
         // DELETE
         [HttpDelete("id")]
         public IActionResult DeletePets(int id){
@@ -79,5 +93,7 @@ namespace pet_hotel.Controllers
             // Send an Ok status
             return Ok(); 
         }
+
+
     }
 }

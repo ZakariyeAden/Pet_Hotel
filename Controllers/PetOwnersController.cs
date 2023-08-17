@@ -51,7 +51,7 @@ namespace pet_hotel.Controllers
             return CreatedAtAction(nameof(CreatePetOwner), new {id = petOwner.Id}, petOwner);
          }
         // DELETE 
-        [HttpDelete("id")]
+        [HttpDelete("{id}")]
          public IActionResult DeletePetOwner(int id){
             // find the Id to delete:
             PetOwner petOwner = _context.PetOwner.Find(id);
@@ -60,7 +60,19 @@ namespace pet_hotel.Controllers
             // Save changes
             _context.SaveChanges();    
             // Send an Ok status
-            return OK(); 
+            return Ok(); 
+         }
+
+         // PUT 
+         [HttpPut("{id}")]
+         public PetOwner Put(int id, PetOwner petOwner)
+         {
+            petOwner.Id = id;
+
+            _context.Update(petOwner);
+            _context.SaveChanges();
+
+            return petOwner;
          }
     }
 }
