@@ -30,7 +30,7 @@ namespace pet_hotel.Controllers
           [HttpGet]
           public IEnumerable<Pet> GetPets(){
               return _context.Pet
-
+            // Join tables with PetOwner
               .Include(pet => pet.petOwner);
           }
        
