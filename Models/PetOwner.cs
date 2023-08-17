@@ -11,5 +11,8 @@ namespace pet_hotel
 
         [Required]
         public string Name { get; set; }
+        public string EmailAddress { get; set; }
+        [NotMapped]
+        public int PetCount { get; set; }
     }
 }
