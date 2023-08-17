@@ -5,8 +5,28 @@ using System;
 
 namespace pet_hotel
 {
-    public enum PetBreedType {}
-    public enum PetColorType {}
+    // * PetBreedType
+    // Enum associates each constant (pet breed) with an int for easy referencing
+    public enum PetBreedType {
+         Shepard, 
+         Poodle, 
+         Beagle, 
+         Bulldog, 
+         Terrier, 
+         Boxer, 
+         Labrador, 
+         Retriever
+         
+    }; // * end PetBreedType
+    
+    // * PetBreedType
+    public enum PetColorType {
+        Black,
+        White,
+        Golden,
+        Tricolor,
+        Spotted
+    }; // * end PetColorType
     public class Pet 
     {
         public int Id {get; set;}
