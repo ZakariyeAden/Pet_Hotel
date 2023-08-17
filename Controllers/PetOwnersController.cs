@@ -28,6 +28,20 @@ namespace pet_hotel.Controllers
          public IEnumerable<PetOwner> GetPetOwners(){
              return _context.PetOwner;
          }
+
+         // GET for PetOwners by specific ID
+         [HttpGet("{id}")]
+         public IActionResult GetOwnerById(int id)
+         {
+            var petOwner = _context.PetOwner.Find(id);
+            if(petOwner == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(petOwner);
+         }
+
         // POST
         [HttpPost]
          public IActionResult CreatePetOwner(PetOwner petOwner){
