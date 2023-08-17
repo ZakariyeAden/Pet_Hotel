@@ -29,6 +29,19 @@ namespace pet_hotel.Controllers
              return _context.PetOwner;
          }
 
+         // GET for PetOwners by specific ID
+         [HttpGet("{id}")]
+         public IActionResult GetOwnerById(int id)
+         {
+            var petOwner = _context.PetOwner.Find(id);
+            if(petOwner == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(petOwner);
+         }
+
         // POST
         [HttpPost]
          public IActionResult CreatePetOwner(PetOwner petOwner){
@@ -41,7 +54,7 @@ namespace pet_hotel.Controllers
         [HttpDelete("id")]
          public IActionResult DeletePetOwner(int id){
             // find the Id to delete:
-            PetOwner petOwner = _context.PetOwner.find(id);
+            PetOwner petOwner = _context.PetOwner.Find(id);
             // Remove  
             _context.PetOwner.Remove(petOwner);
             // Save changes
