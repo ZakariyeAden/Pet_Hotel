@@ -43,9 +43,11 @@ namespace pet_hotel.Controllers
             // find the Id to delete:
             PetOwner petOwner = _context.PetOwner.find(id);
             // Remove  
-            _context.PetOwner.remove(petOwner);
+            _context.PetOwner.Remove(petOwner);
             // Save changes
-            _context.SaveChanges();     
+            _context.SaveChanges();    
+            // Send an Ok status
+            return OK(); 
          }
     }
 }

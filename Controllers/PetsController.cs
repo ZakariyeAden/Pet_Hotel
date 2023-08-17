@@ -70,11 +70,14 @@ namespace pet_hotel.Controllers
         [HttpDelete("id")]
         public IActionResult DeletePets(int id){
             // Find the Id to Delete:
-            Pet pet = _context.Pet.find(id);
+            Pet pet = _context.Pet.Find(id);
             // Remove
-            _context.Pet.remove(pet);
+            _context.Pet.Remove(pet);
             // Save Changes
             _context.SaveChanges();
+
+            // Send an Ok status
+            return Ok(); 
         }
     }
 }
