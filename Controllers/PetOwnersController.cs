@@ -50,6 +50,8 @@ namespace pet_hotel.Controllers
 
             return CreatedAtAction(nameof(CreatePetOwner), new {id = petOwner.Id}, petOwner);
          }
+        //  UPDATE
+
         // DELETE 
         [HttpDelete("id")]
          public IActionResult DeletePetOwner(int id){
@@ -60,7 +62,7 @@ namespace pet_hotel.Controllers
             // Save changes
             _context.SaveChanges();    
             // Send an Ok status
-            return OK(); 
+            return Ok(); 
          }
     }
 }
