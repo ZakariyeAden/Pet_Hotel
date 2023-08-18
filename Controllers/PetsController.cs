@@ -59,7 +59,7 @@ namespace pet_hotel.Controllers
               .Include(pet => pet.petOwner);
           }
 
-            // GET for PetOwners by specific ID
+            // GET for Pet by specific ID
          [HttpGet("{id}")]
          public IActionResult GetPetById(int id)
          {
