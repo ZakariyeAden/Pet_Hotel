@@ -94,6 +94,55 @@ namespace pet_hotel.Controllers
             return Ok(); 
         }
 
+        // PUT
+        [HttpPut("{id}/checkin")]
+        public IActionResult CheckInPet(int id)
+        {
+            Pet pet = _context.Pet.Find(id);
+
+            if(pet == null)
+            {
+                return NotFound();
+            }
+            if(pet.CheckedInAt == null)
+            {
+                pet.CheckedInAt = DateTime.Now;
+
+                _context.Update(pet);
+                _context.SaveChanges();
+
+                return Ok(pet);
+            }
+            else
+            {
+                return BadRequest("Pet is already checked in.");
+            }
+        }
+
+        [HttpPut("{id}/checkout")]
+        public IActionResult CheckOutPet(int id)
+        {
+            Pet pet = _context.Pet.Find(id);
+
+            if(pet == null)
+            {
+                return NotFound();
+            }
+            
+            if(pet.CheckedInAt != null)
+            {
+                pet.CheckedInAt = null;
+
+                _context.Update(pet);
+                _context.SaveChanges();
+
+                return Ok(pet);
+            }
+            else{
+                return BadRequest("Pet is already checked out.");
+            }
+        }
+
 
     }
 }
